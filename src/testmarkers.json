@@ -1,0 +1,66 @@
+{
+    "id": "thisIsMySource",
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            102,
+            0.5
+          ]
+        },
+        "properties": {
+          "icon": "monument",
+          "title": "1",
+          "description": "Shortdesc"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            101,
+            0.5
+          ]
+        },
+        "properties": {
+          "icon": "monument",
+          "title": "2",
+          "description": "Shortdesc"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            102,
+            0.8
+          ]
+        },
+        "properties": {
+          "icon": "monument",
+          "title": "3",
+          "description": "Shortdesc"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            100,
+            0.8
+          ]
+        },
+        "properties": {
+          "icon": "monument",
+          "title": "4",
+          "description": "Shortdesc"
+        }
+      }
+    ]
+  }
