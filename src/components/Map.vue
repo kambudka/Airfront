@@ -3,7 +3,8 @@
     <MglMap 
     :accessToken="accessToken" 
     :mapStyle="mapStyle"
-    @map-load="onload"
+    @load="onload"
+    @mouseenter="check"
     >
       <MglGeojsonLayer
         sourceId="geoJsonSource"
@@ -11,6 +12,14 @@
         layerId="somethingSomething"
         :layer="geoJsonLayer"
       />
+      <!-- <GeoPopup
+      ref="popup"
+      :coordinates="popupCoordinates"
+      anchor="bottom"
+      .map-popup-content {{ popupContent }}
+      >
+
+      </GeoPopup> -->
     </MglMap>
   </div>
 </template>
@@ -30,6 +39,8 @@ export default {
       accessToken:
         "pk.eyJ1IjoibWlrZWhhbWlsdG9uMDAiLCJhIjoiNDVjS2puUSJ9.aLvWM5BnllUGJ0e6nwMSEg", // your access token. Needed if you using Mapbox maps
       mapStyle: "mapbox://styles/mapbox/light-v10", // your map style
+      popupCoordinates: [0,0],
+      popupContent: null,
       geoJsonSource: {
         type: 'geojson',
         data: 'https://api.myjson.com/bins/lcwhw'
@@ -50,10 +61,10 @@ export default {
     };
   },
   methods:{
-    onload(){
-      
-    }
-
+    check(){
+    },
+    onload() {
+    },
   },
   created() {
     // We need to set mapbox-gl library here in order to use it in template
