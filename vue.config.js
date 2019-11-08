@@ -1,3 +1,4 @@
 module.exports = {
-  transpileDependencies: ["vuetify"]
+  transpileDependencies: ["vuetify"],
+  chainWebpack: config => config.plugins.delete("named-chunks")
 };

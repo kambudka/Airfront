@@ -1,11 +1,17 @@
-<template lang="pug">
-  mgl-popup(
-    ref="popup",
-    :coordinates="getCoordinates",
-    :closeButton="closeButton",
-    :closeOnClick="closeOnClick")
-    .map-popup-content.has-text-centered
-    strong {{ content}}
+<template>
+  <div id="geopopip">
+    <MglPopup
+      ref="popup"
+      :coordinates="getCoordinates"
+      :closeButton="closeButton"
+      :closeOnClick="closeOnClick"
+      .map-popup-content.has-text-centered
+      strong
+      {{
+      content}}
+    >
+    </MglPopup>
+  </div>
 </template>
 
 <script>
@@ -35,17 +41,12 @@ export default {
   data: () => ({
     popupContent: null,
     closeButton: false,
-    closeOnClick: false
+    closeOnClick: false,
+    show: true
   }),
   watch: {
-    show() {
-      if (!this.show) {
-        if (this.$refs.popup) {
-          this.$refs.popup.popup.remove();
-        }
-      } else if (this.$refs.popup) {
-        this.$refs.popup.popup.addTo(this.$store.map);
-      }
+    show: function() {
+      this.showMe();
     }
   },
   computed: {
@@ -55,8 +56,18 @@ export default {
       return this.coordinates;
     }
   },
-  methods: {}
+  methods: {
+    showMe(){
+      alert("lol");
+      if (!this.show) {
+        if (this.$refs.popup) {
+          this.$refs.popup.popup.remove();
+        }
+      } else if (this.$refs.popup) {
+        this.$refs.popup.popup.addTo(this.$store.map);
+      }
+    }
+  }
 };
 </script>
-<style scoped>
-</style>
+<style scoped></style>
