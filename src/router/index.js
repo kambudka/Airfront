@@ -1,24 +1,31 @@
 import Vue from "vue";
-import VueRouter from "vue-router";
-import Map from "../components/Map.vue";
+import Router from "vue-router";
 
-Vue.use(VueRouter);
-
-const routes = [
+const routerOptions = [
+  { path: "/", component: "Map" },
+  { path: "/userprofile", component: "UserProfile" },
+  { path: "/usersettings", component: "UserSettings" },
+  { path: "/map", component: "TestMap" },
+  { path: "/home", component: "Map" },
+  { path: "/events", component: "Events" },
+  { path: "/event", component: "Event" },
   {
-    path: "/",
-    name: "map",
-    component: Map
-  },
-  {
-    path: "/map",
-    name: "map",
-    component: () => import(/* webpackChunkName: "about" */ "../components/Map.vue")
+    path: "event/:id",
+    name: "eventSingle",
+    component: () => import("../components/Event.vue")
   }
 ];
 
-const router = new VueRouter({
-  routes
+const routes = routerOptions.map(route => {
+  return {
+    ...route,
+    component: () => import(`@/components/${route.component}.vue`)
+  };
 });
 
-export default router;
+Vue.use(Router);
+
+export default new Router({
+  mode: "history",
+  routes
+});

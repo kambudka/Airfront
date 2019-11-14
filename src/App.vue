@@ -1,70 +1,69 @@
 <template>
-  <v-app id="App">
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-      clipped
-    >
+  <v-app id="inspire">
+    <v-navigation-drawer v-model="drawer" app>
       <v-list dense>
-        <v-list-item link>
+        <v-list-item to="/events">
           <v-list-item-action>
-            <v-icon>mdi-view-dashboard</v-icon>
+            <v-icon>mdi-home</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Dashboard</v-list-item-title>
+            <v-list-item-title>Events</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link>
+        <v-list-item to="/map">
           <v-list-item-action>
-            <v-icon>mdi-settings</v-icon>
+            <v-icon>mdi-contact-mail</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Settings</v-list-item-title>
+            <v-list-item-title>Map</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/userprofile">
+          <v-list-item-action>
+            <v-icon>mdi-contact-mail</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>User Profile</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/usersettings">
+          <v-list-item-action>
+            <v-icon>mdi-home</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>User Settings</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar
-      app
-      clipped-left
-    >
+    <v-app-bar app color="indigo" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>Airsoft</v-toolbar-title>
     </v-app-bar>
 
     <v-content>
-      <v-container
-        class="fill-height"
-        fluid
-        fixed
-      >
-                  <Map/>
+      <v-container class="fill-height" fluid>
+        <v-row align="center" justify="center">
+          <transition mode="out-in">
+            <router-view />
+          </transition>
+        </v-row>
       </v-container>
     </v-content>
-
-    <v-footer app>
-      <span>&copy; 2019</span>
+    <v-footer color="indigo" app>
+      <span class="white--text">&copy; 2019</span>
     </v-footer>
   </v-app>
 </template>
 
 <script>
-import Map from "./components/Map";
-  export default {
-    name: "App",
-      components: {
-    Map,
+export default {
+  props: {
+    source: String
   },
-    props: {
-      source: String,
-    },
-    data: () => ({
-      drawer: null,
-    }),
-    created () {
-      this.$vuetify.theme.dark = true
-    },
-  }
+  data: () => ({
+    drawer: null
+  })
+};
 </script>
-

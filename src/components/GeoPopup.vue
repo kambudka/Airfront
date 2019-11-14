@@ -1,17 +1,16 @@
 <template>
-  <div id="geopopip">
+  <v-container>
     <MglPopup
+      v-if="!show"
       ref="popup"
       :coordinates="getCoordinates"
+      :closeOnClick="true"
       :closeButton="closeButton"
-      :closeOnClick="closeOnClick"
-      .map-popup-content.has-text-centered
-      strong
-      {{
-      content}}
+      anchor="bottom"
     >
+      <VCard> <div>Hello, I'm popup!</div> </VCard>
     </MglPopup>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -35,17 +34,16 @@ export default {
     },
     show: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   data: () => ({
     popupContent: null,
     closeButton: false,
-    closeOnClick: false,
-    show: true
+    closeOnClick: false
   }),
   watch: {
-    show: function() {
+    coordinates: function() {
       this.showMe();
     }
   },
@@ -57,8 +55,7 @@ export default {
     }
   },
   methods: {
-    showMe(){
-      alert("lol");
+    showMe() {
       if (!this.show) {
         if (this.$refs.popup) {
           this.$refs.popup.popup.remove();

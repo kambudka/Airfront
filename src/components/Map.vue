@@ -3,94 +3,84 @@
     <MglMap
       :accessToken="accessToken"
       :mapStyle="mapStyle"
+      :center="[19.080392, 52.125736]"
+      :zoom="6"
       @load="onload"
       @mouseenter="check"
     >
-      <MglGeojsonLayer
-        sourceId="geoJsonSource"
-        :source="geoJsonSource"
-        layerId="geoLayer"
-        :layer="geoJsonLayer"
-      />
-      <GeoPopup
-        ref="popup"
-        :coordinates="popupCoordinates"
-        :content="popupContent"
-        show="msg"
-        anchor="bottom"
+      <MglNavigationControl :showZoom="true" :showCompass="false" />
+
+      <MglMarker
+        v-for="marker in markers.data.markers"
+        :key="marker.id"
+        :coordinates="marker.coords"
+        :color="marker.color"
       >
-      </GeoPopup>
+        <MglPopup anchor="bottom-left">
+          <Popup
+            :title="marker.title"
+            :shortDesc="marker.shortDesc"
+            :type="marker.type"
+            :date="marker.date"
+            :maxCount="marker.maxCount"
+            :count="marker.count"
+          >
+          </Popup>
+        </MglPopup>
+      </MglMarker>
     </MglMap>
   </div>
 </template>
 
 <script>
 import Mapbox from "mapbox-gl";
-import GeoPopup from "./GeoPopup";
-import { MglMap, MglGeojsonLayer } from "vue-mapbox";
+import Popup from "@/components/Popup";
+import {
+  MglMap,
+  //MglGeojsonLayer,
+  MglMarker,
+  MglNavigationControl,
+  MglPopup
+} from "vue-mapbox";
 
 export default {
   name: "map",
   components: {
     MglMap,
-    GeoPopup,
-    MglGeojsonLayer
+    MglMarker,
+    Popup,
+    //GeoPopup,
+    MglPopup,
+    MglNavigationControl
+    //MglGeojsonLayer
   },
   data() {
     return {
       accessToken:
         "pk.eyJ1IjoibWlrZWhhbWlsdG9uMDAiLCJhIjoiNDVjS2puUSJ9.aLvWM5BnllUGJ0e6nwMSEg", // your access token. Needed if you using Mapbox maps
       mapStyle: "mapbox://styles/mapbox/light-v10", // your map style
-      popupCoordinates: [0, 0],
-      msg: true,
-      popupContent: null,
-      geoJsonSource: {
-        type: "geojson",
-        data: "https://api.myjson.com/bins/lcwhw"
-      },
-      geoJsonLayer: {
-        type: "symbol",
-        layout: {
-          "icon-image": "{icon}-15",
-          "text-field": "{title}",
-          "text-font": [
-            "Open Sans Semibold",
-            "Arial Unicode MS Bold",
-            "Arial Unicode MS Bold"
-          ],
-          "text-offset": [0, 0.6],
-          "text-anchor": "top",
-          "icon-allow-overlap": true,
-          "text-allow-overlap": true
+      markers: [
+        {
+          id: 1,
+          title: "Larpowisko",
+          coords: [21.967764, 53.785334],
+          shortDesc: "Impreza typu LARP w klimatach post-apo",
+          type: "LARP",
+          date: "2019-04-23T18:25:43.511Z",
+          maxCount: 30,
+          count: 10,
+          color: "blue"
         }
-      }
+      ]
     };
   },
   methods: {
     check() {},
-    onload(e) {
-      e.map.on("mouseenter", "geoLayer", event => {
-        e.map.getCanvas().style.cursor = "pointer";
-        const coordinates = event.features[0].geometry.coordinates.slice();
-        const content = event.features[0].properties.name;
-
-        // Ensure that if the map is zoomed out such that multiple
-        // copies of the feature are visible, the popup appears
-        // over the copy being pointed to.
-        while (Math.abs(event.lngLat.lng - coordinates[0]) > 180) {
-          coordinates[0] += event.lngLat.lng > coordinates[0] ? 360 : -360;
-        }
-        this.popupCoordinates = coordinates;
-        this.popupContent = content;
-        this.msg = false; // not the best way to do this
-      });
-      e.map.on("mouseleave", "geoLayer", () => {
-        e.map.getCanvas().style.cursor = "";
-        this.$refs.popup.popup.remove(); // not the best way to do this
-      });
-    }
+    onload() {}
   },
   created() {
+    const baseURI = "https://api.myjson.com/bins/zc18i";
+    this.$axios.get(baseURI).then(response => (this.markers = response));
     // We need to set mapbox-gl library here in order to use it in template
     this.mapbox = Mapbox;
   }
@@ -104,7 +94,22 @@ export default {
   position: absolute;
   display: flex;
   flex-wrap: wrap;
-  -webkit-align-content: center;
+  text-align: left;
   align-content: center;
+}
+
+.mgl-map-wrapper .mapboxgl-map {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.mapboxgl-marker {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid gray;
+  background-color: lightblue;
 }
 </style>
