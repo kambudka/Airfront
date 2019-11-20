@@ -8,6 +8,7 @@ import axios from "../node_modules/axios";
 import VueAxios from "../node_modules/vue-axios";
 import Mapbox from "mapbox-gl";
 import vuetify from "./plugins/vuetify";
+import '../node_modules/material-design-icons-iconfont'
 
 Vue.config.productionTip = false;
 Vue.use(vuetify);

@@ -12,6 +12,7 @@
     "core-js": "^3.3.2",
     "map-promisified": "^0.4.0",
     "mapbox-gl": "^1.5.0",
+    "material-design-icons-iconfont": "^5.0.1",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.5",

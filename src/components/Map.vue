@@ -8,6 +8,7 @@
       @load="onload"
       @mouseenter="check"
     >
+      <Search> </Search>
       <MglNavigationControl :showZoom="true" :showCompass="false" />
 
       <MglMarker
@@ -33,15 +34,10 @@
 </template>
 
 <script>
+import Search from "@/components/ExpansionSearch";
 import Mapbox from "mapbox-gl";
 import Popup from "@/components/Popup";
-import {
-  MglMap,
-  //MglGeojsonLayer,
-  MglMarker,
-  MglNavigationControl,
-  MglPopup
-} from "vue-mapbox";
+import { MglMap, MglMarker, MglNavigationControl, MglPopup } from "vue-mapbox";
 
 export default {
   name: "map",
@@ -49,7 +45,7 @@ export default {
     MglMap,
     MglMarker,
     Popup,
-    //GeoPopup,
+    Search,
     MglPopup,
     MglNavigationControl
     //MglGeojsonLayer
