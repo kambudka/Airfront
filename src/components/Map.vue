@@ -1,5 +1,5 @@
 <template>
-  <div id="map">
+  <div id="map" style="text-align: left">
     <MglMap
       :accessToken="accessToken"
       :mapStyle="mapStyle"
@@ -90,7 +90,7 @@ export default {
   position: absolute;
   display: flex;
   flex-wrap: wrap;
-  text-align: left;
+  text-align: center;
   align-content: center;
 }
 
