@@ -2,20 +2,20 @@
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" app>
       <v-list dense>
-        <v-list-item to="/events">
+        <v-list-item to="/">
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Events</v-list-item-title>
+            <v-list-item-title>Map</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item to="/map">
+        <v-list-item to="/events">
           <v-list-item-action>
-            <v-icon>mdi-contact-mail</v-icon>
+            <v-icon>mdi-power</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Map</v-list-item-title>
+            <v-list-item-title>Events</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item to="/userprofile">
@@ -39,7 +39,7 @@
 
     <v-app-bar app color="indigo" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Airsoft</v-toolbar-title>
+      <v-toolbar-title>Airfront</v-toolbar-title>
     </v-app-bar>
 
     <v-content>

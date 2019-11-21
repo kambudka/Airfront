@@ -1,13 +1,43 @@
 <template>
-  <v-Card>
-    <h3 class="red--text">Tytuł: {{ title }}</h3>
-    <h3 class="red--text">Kategoria {{ type }}</h3>
-    <h3 class="red--text">{{ shortDesc }}</h3>
-    <h3 class="red--text">Data {{ date }}</h3>
-    <h3 class="red--text">Max uczestnikow {{ maxCount }}</h3>
-    <h3 class="red--text">Zapisanych {{ count }}</h3>
-    <v-btn raised="true" to="/home">Click</v-btn>
-  </v-Card>
+  <v-container align-start>
+    <v-layout wrap>
+      <v-flex xl12 sm12>
+        <v-row class="mb-1" no-gutters>
+          <v-col>
+            <h2>{{ title }}</h2>
+          </v-col>
+        </v-row>
+        <v-row class="mb-1" no-gutters>
+          <v-col>
+            <h3>{{ type }}</h3>
+          </v-col>
+        </v-row>
+        <v-row class="mb-1" no-gutters>
+          <v-col>
+            <div>{{ date }}</div>
+          </v-col>
+        </v-row>
+        <v-row class="mb-1" no-gutters>
+          <v-col>
+            <div>{{ shortDesc }}</div>
+          </v-col>
+        </v-row>
+        <v-row class="mb-1" no-gutters>
+          <v-col>
+            <div>{{ count }}/{{ maxCount }}</div>
+          </v-col>
+        </v-row>
+        <v-row class="mb-1" no-gutters>
+          <v-col>
+            <v-btn color="success">Event</v-btn>
+          </v-col>
+          <v-col>
+            <v-btn text color="primary">Close</v-btn>
+          </v-col>
+        </v-row>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -43,3 +73,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.container {
+  padding: 0%;
+}
+</style>

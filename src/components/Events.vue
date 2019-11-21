@@ -3,7 +3,7 @@
     <v-layout justify-center wrap column align start>
       <v-flex xs12 sm8>
         <v-content
-          pa="0"
+        class="py-1"
           v-for="marker in events.data.markers"
           :key="marker.id"
         >

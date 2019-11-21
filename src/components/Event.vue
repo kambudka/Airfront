@@ -1,6 +1,6 @@
 <template>
   <v-container align-start>
-    <v-layout justify-center wrap>
+    <v-layout justify-center wrap fill>
       <v-flex xs12 sm8>
         <v-card hover>
           <v-card-title>

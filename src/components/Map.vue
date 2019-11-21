@@ -9,7 +9,11 @@
       @mouseenter="check"
     >
       <Search> </Search>
-      <MglNavigationControl :showZoom="true" :showCompass="false" />
+      <MglNavigationControl
+        :showZoom="true"
+        :showCompass="false"
+        position="bottom-right"
+      />
 
       <MglMarker
         v-for="marker in markers.data.markers"
@@ -17,7 +21,7 @@
         :coordinates="marker.coords"
         :color="marker.color"
       >
-        <MglPopup anchor="bottom-left">
+        <MglPopup anchor="bottom-left" :closeButton="false">
           <Popup
             :title="marker.title"
             :shortDesc="marker.shortDesc"
